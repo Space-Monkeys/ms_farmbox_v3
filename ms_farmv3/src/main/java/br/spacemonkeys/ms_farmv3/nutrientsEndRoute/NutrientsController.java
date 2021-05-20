@@ -19,7 +19,7 @@ public class NutrientsController {
     @PostMapping("/nutri")
     ResponseEntity create(@RequestBody @Valid NutrientsRequest request){
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(nutrientRepository.save(request.toModel()));
+                .body(nutrientRepository.save(request.toModel(nutrientRepository)));
     }
     @GetMapping("/nutri/{id}")
     public ResponseEntity findAll(@PathVariable(value = "id", required = true) Long id ){

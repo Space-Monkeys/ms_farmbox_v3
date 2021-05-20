@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v3")
 public class humidityEndPoint {
@@ -16,9 +18,9 @@ public class humidityEndPoint {
     private HTRepository htRepository;
 
     @PostMapping("/ht")
-    ResponseEntity create(@RequestBody HtRequest request){
+    ResponseEntity create(@RequestBody @Valid HtRequest request){
 
-        HtModel response = htRepository.save(request.toModel());
+        HtModel response = htRepository.save(request.toModel(htRepository));
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

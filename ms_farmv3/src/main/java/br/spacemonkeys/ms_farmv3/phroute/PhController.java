@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v3")
 public class PhController {
@@ -22,7 +24,7 @@ public class PhController {
 
 
     @PostMapping("/ph")
-    public ResponseEntity create(@RequestBody PhRequest request){
+    public ResponseEntity create(@RequestBody @Valid PhRequest request){
         Ph newPh = repository.save(request.toModel(repository));
         return ResponseEntity.status(HttpStatus.CREATED).body(newPh);
     }
