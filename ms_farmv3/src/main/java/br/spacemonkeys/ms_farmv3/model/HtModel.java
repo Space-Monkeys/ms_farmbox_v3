@@ -1,17 +1,13 @@
 package br.spacemonkeys.ms_farmv3.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import javax.annotation.sql.DataSourceDefinition;
 import java.time.LocalDateTime;
 
 public class HtModel {
     @Id
     private Long id;
-    private final Clock createdAt = new Clock(
+    private  Clock createdAt = new Clock(
             LocalDateTime.now().getDayOfMonth(),
             LocalDateTime.now().getMonth().getValue(),
             LocalDateTime.now().getYear(),

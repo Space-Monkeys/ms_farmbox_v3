@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class Nutrients {
     @Id
     private Long id;
-    private final Clock createdAt = new Clock(
+    private  Clock createdAt = new Clock(
             LocalDateTime.now().getDayOfMonth(),
             LocalDateTime.now().getMonth().getValue(),
             LocalDateTime.now().getYear(),
