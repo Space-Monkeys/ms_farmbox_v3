@@ -32,9 +32,11 @@ public class GetAllController {
 
         GelAllJson response = new GelAllJson();
 
-        response.setHtModelList(ht.get().getValues());
-        response.setNutrientsList(nutri.get().getValues());
-        response.setPhList(ph.get().getValue());
+        if(ht.isPresent()) response.setHtModelList(ht.get().getValues());
+
+        if(nutri.isPresent()) response.setNutrientsList(nutri.get().getValues());
+
+        if(ph.isPresent()) response.setPhList(ph.get().getValue());
 
         return ResponseEntity.ok(response);
     }
