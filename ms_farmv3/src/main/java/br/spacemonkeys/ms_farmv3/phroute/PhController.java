@@ -23,7 +23,7 @@ public class PhController {
 
     @PostMapping("/ph")
     public ResponseEntity create(@RequestBody PhRequest request){
-        Ph newPh = repository.save(request.toModel());
+        Ph newPh = repository.save(request.toModel(repository));
         return ResponseEntity.status(HttpStatus.CREATED).body(newPh);
     }
 
