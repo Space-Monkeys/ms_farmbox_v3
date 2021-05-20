@@ -5,11 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import javax.annotation.sql.DataSourceDefinition;
 import java.time.LocalDateTime;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class HtModel {
     @Id
     private Long id;
@@ -23,4 +21,30 @@ public class HtModel {
     );
     private String humidity;
     private String temperature;
+
+    public HtModel(Long id, String humidity, String temperature) {
+        this.id = id;
+        this.humidity = humidity;
+        this.temperature = temperature;
+    }
+
+    @Deprecated
+    public HtModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Clock getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
 }

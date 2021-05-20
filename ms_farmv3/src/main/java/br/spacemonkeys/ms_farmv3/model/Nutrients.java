@@ -1,15 +1,9 @@
 package br.spacemonkeys.ms_farmv3.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Nutrients {
     @Id
     private Long id;
@@ -23,4 +17,30 @@ public class Nutrients {
     );
     private String micro;
     private String macro;
+
+    @Deprecated
+    public Nutrients() {
+    }
+
+    public Nutrients(Long id, String micro, String macro) {
+        this.id = id;
+        this.micro = micro;
+        this.macro = macro;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Clock getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getMicro() {
+        return micro;
+    }
+
+    public String getMacro() {
+        return macro;
+    }
 }
