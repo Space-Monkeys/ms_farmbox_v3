@@ -19,4 +19,6 @@ public class GelAllJson {
     private List<Integer> phList;
     @JsonProperty("humidade_temperatura")
     private List<HtValues> htModelList;
+    @JsonProperty("condutividade")
+    private Conductivity conductivities;
 }

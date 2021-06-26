@@ -1,5 +1,6 @@
 package br.spacemonkeys.ms_farmv3.queries;
 
+import br.spacemonkeys.ms_farmv3.repository.ConductivityRepository;
 import br.spacemonkeys.ms_farmv3.repository.HTRepository;
 import br.spacemonkeys.ms_farmv3.repository.NutrientRepository;
 import br.spacemonkeys.ms_farmv3.repository.PhRepository;
@@ -23,12 +24,16 @@ public class GetAllController {
     @Autowired
     private PhRepository phRepository;
 
+    @Autowired
+    private ConductivityRepository conductivityRepository;
+
     @GetMapping("/all/{id}")
     public ResponseEntity findAll(@PathVariable(value = "id", required = true) Long id ){
 
         var nutri = nutrientRepository.findById(id);
         var ht = htRepository.findById(id);
         var ph = phRepository.findById(id);
+        var conduct = conductivityRepository.findById(id);
 
         GelAllJson response = new GelAllJson();
 
@@ -37,6 +42,8 @@ public class GetAllController {
         if(nutri.isPresent()) response.setNutrientsList(nutri.get().getValues());
 
         if(ph.isPresent()) response.setPhList(ph.get().getValue());
+
+        if(conduct.isPresent()) response.setConductivities(conduct.get());
 
         return ResponseEntity.ok(response);
     }

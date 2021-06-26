@@ -15,11 +15,13 @@ public class ConductivityController {
     @Autowired
     private final ConductivityRepository repository;
 
-    public ConductivityController(ConductivityRepository repository) { this.repository = repository; }
+    public ConductivityController(ConductivityRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping("/conductivity")
     public ResponseEntity create(@RequestBody ConductivityRequest request) {
-        Conductivity newConductivity = repository.save(request.toModel());
+        Conductivity newConductivity = repository.save(request.toModel(repository));
         return ResponseEntity.status(HttpStatus.CREATED).body(newConductivity);
     }
 

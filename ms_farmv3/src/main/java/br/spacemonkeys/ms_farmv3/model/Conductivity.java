@@ -4,29 +4,16 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Conductivity {
     @Id
     private Long id;
+    private List<ConductValues> values;
 
-    private Integer value;
+    public void setValues(Integer value) { this.values.add(new ConductValues(value));}
 
-    @Setter
-    private  Clock createdAt = new Clock(
-            LocalDateTime.now().getDayOfMonth(),
-            LocalDateTime.now().getMonth().getValue(),
-            LocalDateTime.now().getYear(),
-            LocalDateTime.now().getHour(),
-            LocalDateTime.now().getMinute(),
-            LocalDateTime.now().getSecond()
-    );
-
-    public Conductivity() {
-    }
-
-    public Conductivity(Long id, Integer value) {
-        this.id = id;
-        this.value = value;
-    }
 }
